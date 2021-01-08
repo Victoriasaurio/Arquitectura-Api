@@ -8,7 +8,8 @@ npm i
 Running the program
 Dev
 ```
-nodemon dev
+nodemon dev 
+npm run dev
 ```
 Pro
 ```
