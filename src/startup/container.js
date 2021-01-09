@@ -14,6 +14,9 @@ const { HomeController } = require("../controllers")
 const { HomeRoutes } = require("../routes/index.routes")
 const Routes = require('../routes')
 
+// models
+const { User, Comment, Idea } = require("../models")
+
 const container = createContainer()
 
 //Inyecta una clase. singleton() permite que sea la misma instancia de HomeService.
@@ -33,6 +36,11 @@ container
 })
 . register({
   HomeRoutes: asFunction(HomeRoutes).singleton()
+})
+.register({ //Serán inyectados tal cual son retornados.
+  User: asValue(User),
+  Idea: asValue(Idea),
+  Comment: asValue(Comment)
 })
 
 module.exports = container;
