@@ -1,3 +1,4 @@
+// Se configura en el archivo 'container' para que Awilix pueda utilizar las configuraciones.
 const { createContainer, asClass, asValue, asFunction } = require('awilix')
 
 // config - Variables de entorno.
@@ -21,7 +22,12 @@ const {
 } = require("../controllers")
 
 // routes
-const { HomeRoutes } = require("../routes/index.routes")
+const {
+  HomeRoutes,
+  UserRoutes,
+  IdeaRoutes,
+  CommentRoutes
+} = require("../routes/index.routes")
 const Routes = require('../routes')
 
 // models
@@ -58,7 +64,10 @@ container
   //Al realizar el bind el scoup se mantiene, ya que express es quien hace que cambie.
 })
 . register({
-  HomeRoutes: asFunction(HomeRoutes).singleton()
+  HomeRoutes: asFunction(HomeRoutes).singleton(),
+  UserRoutes: asFunction(UserRoutes).singleton(),
+  IdeaRoutes: asFunction(IdeaRoutes).singleton(),
+  CommentRoutes: asFunction(CommentRoutes).singleton()
 })
 .register({ //Serán inyectados tal cual son retornados.
   User: asValue(User),
