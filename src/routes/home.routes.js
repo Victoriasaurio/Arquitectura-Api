@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-//Awilix porporciona el HomeController.
+//Awilix proporciona el HomeController.
 module.exports = function({ HomeController }){
   const router = Router();
 
