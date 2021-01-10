@@ -13,7 +13,12 @@ const {
  } = require('../services')
 
 // controllers
-const { HomeController } = require("../controllers")
+const {
+  HomeController,
+  UserController,
+  IdeaController,
+  CommentController
+} = require("../controllers")
 
 // routes
 const { HomeRoutes } = require("../routes/index.routes")
@@ -46,7 +51,10 @@ container
   UserService: asClass(UserService).singleton()
 })
 .register({
-  HomeController: asClass(HomeController.bind(HomeController)).singleton()
+  HomeController: asClass(HomeController.bind(HomeController)).singleton(),
+  UserController: asClass(UserController.bind(UserController)).singleton(),
+  IdeaController: asClass(IdeaController.bind(IdeaController)).singleton(),
+  CommentController: asClass(CommentController.bind(CommentController)).singleton()
   //Al realizar el bind el scoup se mantiene, ya que express es quien hace que cambie.
 })
 . register({
