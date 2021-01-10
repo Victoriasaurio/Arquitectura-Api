@@ -6,7 +6,12 @@ const compression = require('compression')//Comprime las peticiones Http.
 require('express-async-errors')//Captura en un middleware las excepciones asíncronas.
 const { NotFoundMiddleware, ErrorMiddleware } = require("../middlewares")
 
-module.exports= function({HomeRoutes}) {
+module.exports= function({
+  HomeRoutes,
+  UserRoutes,
+  IdeaRoutes,
+  CommentRoutes
+}) {
   const router = express.Router()
   const apiRoutes = express.Router()
 
@@ -18,6 +23,9 @@ module.exports= function({HomeRoutes}) {
   .use(compression());
 
   apiRoutes.use("/home", HomeRoutes);
+  apiRoutes.use("/user", UserRoutes);
+  apiRoutes.use("/idea", IdeaRoutes);
+  apiRoutes.use("/comment", CommentRoutes);
 
 //Versión que tendrán todos los enpoints.
   router.use("/v1/api", apiRoutes);
