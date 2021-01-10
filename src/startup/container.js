@@ -5,7 +5,12 @@ const config = require('../config')
 const app = require('.') //La ruta se interpreta.
 
 // services
-const { HomeService } = require('../services')
+const {
+  HomeService,
+  IdeaService,
+  CommentService,
+  UserService
+ } = require('../services')
 
 // controllers
 const { HomeController } = require("../controllers")
@@ -26,7 +31,7 @@ const {
 
 const container = createContainer()
 
-//Inyecta una clase. singleton() permite que sea la misma instancia de HomeService.
+//Inyecta una clase. singleton() permite que sea la misma instancia a la que pertence. Ej HomeController, HomeRoutes, etc.
 container
 .register({ //Config principal de la aplicación.
   app: asClass(app).singleton(),
@@ -35,7 +40,10 @@ container
   //El config lo obtenemos como un obleto con el asValue.
 })
 .register({
-  HomeService: asClass(HomeService).singleton()
+  HomeService: asClass(HomeService).singleton(),
+  IdeaService: asClass(IdeaService).singleton(),
+  CommentService: asClass(CommentService).singleton(),
+  UserService: asClass(UserService).singleton()
 })
 .register({
   HomeController: asClass(HomeController.bind(HomeController)).singleton()
