@@ -10,7 +10,8 @@ const {
   HomeService,
   IdeaService,
   CommentService,
-  UserService
+  UserService,
+  AuthService
  } = require('../services')
 
 // controllers
@@ -18,7 +19,8 @@ const {
   HomeController,
   UserController,
   IdeaController,
-  CommentController
+  CommentController,
+  AuthController
 } = require("../controllers")
 
 // routes
@@ -26,7 +28,8 @@ const {
   HomeRoutes,
   UserRoutes,
   IdeaRoutes,
-  CommentRoutes
+  CommentRoutes,
+  AuthRoutes
 } = require("../routes/index.routes")
 const Routes = require('../routes')
 
@@ -54,20 +57,23 @@ container
   HomeService: asClass(HomeService).singleton(),
   IdeaService: asClass(IdeaService).singleton(),
   CommentService: asClass(CommentService).singleton(),
-  UserService: asClass(UserService).singleton()
+  UserService: asClass(UserService).singleton(),
+  AuthService: asClass(AuthService).singleton()
 })
 .register({
   HomeController: asClass(HomeController.bind(HomeController)).singleton(),
   UserController: asClass(UserController.bind(UserController)).singleton(),
   IdeaController: asClass(IdeaController.bind(IdeaController)).singleton(),
-  CommentController: asClass(CommentController.bind(CommentController)).singleton()
+  CommentController: asClass(CommentController.bind(CommentController)).singleton(),
+  AuthController: asClass(AuthController.bind(AuthController)).singleton()
   //Al realizar el bind el scoup se mantiene, ya que express es quien hace que cambie.
 })
 . register({
   HomeRoutes: asFunction(HomeRoutes).singleton(),
   UserRoutes: asFunction(UserRoutes).singleton(),
   IdeaRoutes: asFunction(IdeaRoutes).singleton(),
-  CommentRoutes: asFunction(CommentRoutes).singleton()
+  CommentRoutes: asFunction(CommentRoutes).singleton(),
+  AuthRoutes: asFunction(AuthRoutes).singleton()
 })
 .register({ //Serán inyectados tal cual son retornados.
   User: asValue(User),
