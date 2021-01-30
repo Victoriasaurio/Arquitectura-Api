@@ -9,8 +9,14 @@ class BaseRepository {
       return await this.model.findById(id)
     }
 
-    async getAll() {
-      return await this.model.find()
+    // Paginación
+    async getAll(pageSize = 5, pageNum = 1) { //pageSize - Cantidad de recursos, pageNum - Página a visualizar
+      // skip - cantidad de elimentos a saltar -- limit - cantidad de recursos a mostrar
+      const skips = pageSize * (pageNum - 1) // Lógica para saltar los recursos.
+      return await this.model
+        .find()
+        .skip(skips)
+        .limit(pageSize)
     }
 
     async create(entity) {
