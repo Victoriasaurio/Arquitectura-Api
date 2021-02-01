@@ -8,12 +8,12 @@ module.exports = function({ IdeaController }){
 //'index' - Indica el método que devuelve al usuario.
   router.get("/:ideaId", IdeaController.get)
   router.get("", ParseIntMiddleware, IdeaController.getAll)
-  router.get("/:ideaId/all", IdeaController.getUserIdeas)
+  router.get("/:userId/all", IdeaController.getUserIdeas)
   router.post("", IdeaController.create)
   router.patch("/:ideaId", AuthMiddleware, IdeaController.update)
   router.delete("/:ideaId", AuthMiddleware, IdeaController.delete)
-  router.post(":ideaId/upvote", AuthMiddleware, IdeaController.upvoteIdeas)
-  router.post(":ideaId/downvote", AuthMiddleware, IdeaController.downvoteIdeas)
+  router.post("/:ideaId/upvote", AuthMiddleware, IdeaController.upvoteIdeas)
+  router.post("/:ideaId/downvote", AuthMiddleware, IdeaController.downvoteIdeas)
 
 
   return router
