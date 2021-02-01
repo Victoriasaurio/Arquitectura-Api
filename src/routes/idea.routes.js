@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { ParseIntMiddleware } = require("../middlewares")
+const { ParseIntMiddleware, AuthMiddleware } = require("../middlewares")
 
 //Awilix proporciona el HomeController.
 module.exports = function({ IdeaController }){
@@ -10,10 +10,10 @@ module.exports = function({ IdeaController }){
   router.get("", ParseIntMiddleware, IdeaController.getAll)
   router.get("/:ideaId/all", IdeaController.getUserIdeas)
   router.post("", IdeaController.create)
-  router.patch("/:ideaId", IdeaController.update)
-  router.delete("/:ideaId", IdeaController.delete)
-  router.post(":ideaId/upvote", IdeaController.upvoteIdeas)
-  router.post(":ideaId/downvote", IdeaController.downvoteIdeas)
+  router.patch("/:ideaId", AuthMiddleware, IdeaController.update)
+  router.delete("/:ideaId", AuthMiddleware, IdeaController.delete)
+  router.post(":ideaId/upvote", AuthMiddleware, IdeaController.upvoteIdeas)
+  router.post(":ideaId/downvote", AuthMiddleware, IdeaController.downvoteIdeas)
 
 
   return router
