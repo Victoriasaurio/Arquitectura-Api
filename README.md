@@ -6,12 +6,6 @@ Install the necessary dependencies of the project.
 npm i
 ```
 Running the program
-Dev
-```
-nodemon dev 
-npm run dev
-```
-Pro
-```
-npm start
-```
+Development `nodemon dev` o `npm run dev` <br>
+Production `npm run start` <br>
+Test `npm run test`
