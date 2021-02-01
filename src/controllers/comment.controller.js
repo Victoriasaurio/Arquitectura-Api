@@ -14,13 +14,13 @@ class CommentController {
   async update(req, res) {
     const { body } = req
     const { commentId} = req.params
-    const updateComment = await _userService.update(commentId, body)
+    const updateComment = await _commentService.update(commentId, body)
     return res.send(updateComment)
   }
 
   async delete(req, res) {
     const { commentId } = req.params
-    const deleteComment = await _userService.delete(commentId)
+    const deleteComment = await _commentService.delete(commentId)
     return res.send(deleteComment)
   }
 
@@ -33,7 +33,8 @@ class CommentController {
   async createComment(req, res) {
     const { body } = req
     const { ideaId } = req.params
-    const createComment = await _commentService.createComment(body, ideaId)
+    const { id: userId } = req.user
+    const createComment = await _commentService.createComment(body, ideaId, userId)
     return res.status(201).send(createComment)
   }
 }
