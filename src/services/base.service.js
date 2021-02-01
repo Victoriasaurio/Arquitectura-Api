@@ -11,8 +11,7 @@ class BaseService {
       throw error; //Este error lo atrapa el error-middleware.
     }
 
-    const currentEntity = await this.repository.get(id)
-
+    const currentEntity = await this.repository.getOne(id)
     if(!currentEntity) {
       const error =  new Error()
       error.status = 404
