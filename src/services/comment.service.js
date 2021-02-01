@@ -33,7 +33,7 @@ class CommentService extends BaseService {
   }
 
 //Idea a la que se creará el comentario y id del autor.
-  async createComment(comment, ideaId) {
+  async createComment(comment, ideaId, userId) {
     if(!ideaId) {
       const error = new Error()
       error.status = 404
@@ -42,7 +42,7 @@ class CommentService extends BaseService {
     }
 
     //Busca la idea
-    const idea = await _ideaRepository.get(ideaId)
+    const idea = await _ideaRepository.getOne(ideaId)
 
     if(!idea) {
       const error = new Error()
@@ -52,7 +52,7 @@ class CommentService extends BaseService {
     }
 
     //Idea a la que se le pasa un comentario adicional.
-    const createComment = await _commentRepository.create(comment)
+    const createComment = await _commentRepository.create({...comment, author: userId}) // Nos ahorramos mandar al usuario
     idea.comments.push(createComment)
 
     return await _ideaRepository.update(ideaId, { comments: idea.comments })
