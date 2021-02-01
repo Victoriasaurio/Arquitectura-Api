@@ -26,7 +26,7 @@ class IdeaService extends BaseService {
       throw error;
     }
 
-    const idea = await _ideaRepository.get(ideaId)
+    const idea = await _ideaRepository.getOne(ideaId)
 
     if(!idea) {
       const error = new Error()
@@ -35,7 +35,7 @@ class IdeaService extends BaseService {
       throw error;
     }
     //Insertamos un único voto.
-    idea.upvote.push(true)
+    idea.upvotes.push(true)
     //Actualizamos la idea y añadimos el voto a la base de datos.
     return await _ideaRepository.update(ideaId, { upvotes: idea.upvotes })
   }
@@ -49,7 +49,7 @@ class IdeaService extends BaseService {
       throw error;
     }
 
-    const idea = await _ideaRepository.get(ideaId)
+    const idea = await _ideaRepository.getOne(ideaId)
 
     if(!idea) {
       const error = new Error()
@@ -58,9 +58,9 @@ class IdeaService extends BaseService {
       throw error;
     }
     //Insertamos un único voto.
-    idea.downvote.push(true)
+    idea.downvotes.push(true)
     //Actualizamos la idea y añadimos el voto a la base de datos.
-    return await _ideaRepository.update(ideaId, { upvotes: idea.downvote })
+    return await _ideaRepository.update(ideaId, { downvotes: idea.downvotes })
   }
 }
 
