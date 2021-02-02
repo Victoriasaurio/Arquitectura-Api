@@ -1,0 +1,24 @@
+version: "3"
+
+services: 
+  api:
+    container_name: mongo-api-node
+    restart: unless-stopped
+    build: 
+      dockerfile: ./Dockerfile
+      context: .
+    volumes: 
+      - .:/usr/src/app
+    environment: 
+      - MONGO_URI=mongodb://mongo:27017/test
+      - APPLICATION_NAME=
+      - JWT_SECRET=
+      - CACHE_KEY=
+      - SWAGGER_DOC=
+    ports: 
+      - ${PORT}:${PORT}
+    command: npm run dev
+    depends_on: 
+      - mongo
+  mongo:
+    image: mongo
