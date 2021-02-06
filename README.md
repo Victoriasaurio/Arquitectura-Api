@@ -1,4 +1,5 @@
 # Arquitectura API
+[![Build Status](https://travis-ci.org/Victoriasaurio/Arquitectura-Api.svg?branch=main)](https://travis-ci.org/Victoriasaurio/Arquitectura-Api)
 ### Initial commands
 Install the necessary dependencies of the project.
 ```
